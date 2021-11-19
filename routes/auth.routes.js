@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-//Routes
+// ? ROUTES
 
 // GET  /signup
 router.get("/signup", (req, res) => {
