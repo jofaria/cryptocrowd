@@ -28,7 +28,7 @@ CryptoCrowd - A platform for cryptocurrency events.
 - **edit user** - As a user I want to be able to create and edit my profile.
 - **See all attendees**: As a user, I want to be able to see a list of all the people attending an event.
 
-<br>q
+<br>
 
 ## Server Routes (Back-end):
 
