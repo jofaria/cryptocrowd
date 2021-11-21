@@ -9,6 +9,10 @@ const bcryptSalt = 10;
 // require Users
 const User = require(".././models/user.model");
 
+// require isLoggedin middleware
+
+const isLoggedIn = require("./../middleware/isLoggedIn");
+
 //Auth Routes GO HERE!
 
 // GET  /signup
@@ -28,12 +32,23 @@ router.post("/signup", (req, res) => {
     return;
   }
 
+  //const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
+  //if (!regex.test(password)) {
+  //  res.status(400).render("auth/signup-form", {
+  //    errorMessage:
+  //      "Password needs to have at least 8 chars and must contain at least one number, one lowercase and one uppercase letter.",
+  //  });
+
+  //  return;
+  //}
+
   User.findOne({ username })
     .then((user) => {
       // 2. Check user does not already exist
       if (user !== null) {
         res.render("auth/signup-form", {
-          message: "The username already exists",
+          errorMessage: "The username already exists",
         });
         return;
       }
@@ -48,7 +63,7 @@ router.post("/signup", (req, res) => {
 
       newUser
         .save()
-        .then(() => res.redirect("/"))
+        .then(() => res.redirect("/login"))
         .catch((err) => next(err));
     })
     .catch((err) => next(err));
@@ -78,7 +93,7 @@ router.post("/login", (req, res) => {
       user = foundUser;
 
       if (!foundUser) {
-        errorMessage: "Provide a username and BLABLA";
+        throw new Error("Wrong password or username");
       }
 
       // compare passwords
@@ -90,9 +105,28 @@ router.post("/login", (req, res) => {
         throw new Error("Wrong password or username");
       } else if (isCorrectPassword) {
         req.session.user = user;
+        res.redirect("/");
       }
-      req.session.user = user;
+    })
+    .catch((err) => {
+      res.render("auth/login-form", {
+        errorMessage: err.message || "Provide username and password.",
+      });
     });
+});
+
+// GET /logout
+router.get("/logout", isLoggedIn, (req, res) => {
+  // Delete the session from the sessions collection
+  // This automatically invalidates the future request with the same cookie
+  req.session.destroy((err) => {
+    if (err) {
+      return res.render("error");
+    }
+
+    // If session was deleted successfully redirect to the home page.
+    res.redirect("/");
+  });
 });
 
 module.exports = router;
