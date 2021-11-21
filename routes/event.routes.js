@@ -11,11 +11,23 @@ router.get("/create-event", (req, res) => {
 router.post("/create-event", (req, res) => {
   const newEvent = req.body;
 
-  Event.create(newEvent).then((createdEvent) => {
-    res.render("event/event-details", { event: createdEvent });
-  });
+  Event.create(newEvent)
+    .then((createdEvent) => {
+      res.render("index");
+    })
+    .catch((err) => console.log(err));
 
   console.log(newEvent);
+});
+
+router.get("/:eventId", (req, res) => {
+  const eventId = req.params.eventId;
+
+  Event.findById(eventId)
+    .then((foundEvent) => {
+      res.render("event/event-details", { event: foundEvent });
+    })
+    .catch((err) => console.log(err));
 });
 
 module.exports = router;

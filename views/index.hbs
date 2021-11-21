@@ -2,8 +2,8 @@
 <p>Welcome CryptoCrowd</p>
 <div id="container">
   {{#if userIsLoggedIn}}
-    <a href="/secret">
-      <button>Protected page (requires authentication!)</button>
+    <a href="/create-event">
+      <button>Create a new event</button>
     </a>
 
     <a href="/logout">
@@ -19,4 +19,14 @@
     </a>
   {{/if}}
 
+</div>
+
+<div>
+  {{#each event}}
+    <h1>{{this.title}}</h1>
+    <img src={{this.img}} />
+    <h2>Coin: {{this.coin}}</h2>
+    <p>Description: {{this.description}}</p>
+    <p>Attending: {{this.attendees}}</p>
+  {{/each}}
 </div>

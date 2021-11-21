@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const isLoggedIn = require("./../middleware/isLoggedIn");
+const Event = require("./../models/event.model");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -8,15 +9,17 @@ router.get("/", (req, res, next) => {
   if (req.session.user) {
     userIsLoggedIn = true;
   }
-
-  res.render("index", { userIsLoggedIn: userIsLoggedIn });
+  Event.find().then((allEvents) => {
+    console.log(allEvents);
+    res.render("index", { userIsLoggedIn: userIsLoggedIn, event: allEvents });
+  });
 });
 
 // GET /secret
 // We use the isLoggedIn middleware to protect the route
 
-router.get("/secret", isLoggedIn, (req, res, next) => {
-  res.render("secret-view");
+router.get("/create-event", isLoggedIn, (req, res, next) => {
+  res.render("event/create-event");
 });
 
 module.exports = router;

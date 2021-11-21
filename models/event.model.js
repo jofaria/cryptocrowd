@@ -9,7 +9,11 @@ const eventSchema = new Schema({
   description: { type: String, required: true },
   attendees: [{ type: Schema.Types.ObjectId, ref: "User" }],
   organizer: { type: Schema.Types.ObjectId, ref: "User" },
-  img: { String, default: "" },
+  img: {
+    type: String,
+    default:
+      "https://www.american.edu/kogod/events/images/website_header_blue.png",
+  },
 });
 
 const Event = model("Event", eventSchema);
