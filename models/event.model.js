@@ -7,8 +7,8 @@ const eventSchema = new Schema({
   date: Date,
   location: { type: String, required: true },
   description: { type: String, required: true },
-  attendees: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-  organizer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  attendees: [{ type: Schema.Types.ObjectId, ref: "User" }],
+  organizer: { type: Schema.Types.ObjectId, ref: "User" },
   img: { String, default: "" },
 });
 

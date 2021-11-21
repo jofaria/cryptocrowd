@@ -1,0 +1,36 @@
+<h1>Create a new event!</h1>
+
+<form id="form" action="/create-event" method="POST">
+
+  <label for="title">Title</label><br />
+  <input type="text" name="title" placeholder="Title of the event" />
+  <br />
+
+  <label for="coin">Coin</label><br />
+  <input type="text" name="coin" placeholder="Crypto currency of the event" />
+
+  <label for="date">Date</label><br />
+  <input type="date" name="date" placeholder="Date of the event" />
+
+  <label for="location">Location</label><br />
+  <input type="text" name="location" placeholder="Location of the event" />
+
+  <label for="description">Description</label><br />
+  <textarea
+    rows="4"
+    cols="50"
+    name="description"
+    placeholder="Description of the event"
+  ></textarea>
+  <br />
+  <label for="img">Image</label>
+  <input type="file" name="img" />
+  <br />
+  <button type="submit">Create account</button>
+</form>
+
+{{! error message display: }}
+
+{{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+{{/if}}
