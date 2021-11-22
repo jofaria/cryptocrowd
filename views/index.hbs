@@ -23,10 +23,14 @@
 
 <div>
   {{#each event}}
-    <h1>{{this.title}}</h1>
-    <img src={{this.img}} />
-    <h2>Coin: {{this.coin}}</h2>
-    <p>Description: {{this.description}}</p>
-    <p>Attending: {{this.attendees}}</p>
+    <a href="/{{this._id}}">
+    <div>
+      <h1>{{this.title}}</h1>
+      <img src={{this.img}} />
+      <h2>Coin: {{this.coin}}</h2>
+      <p>Description: {{this.description}}</p>
+      <p>Attending: {{this.attendees}}</p>
+      </a>
+    </div>
   {{/each}}
 </div>
