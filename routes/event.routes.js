@@ -5,28 +5,54 @@ const isLoggedIn = require("./../middleware/isLoggedIn");
 // require Users
 const User = require(".././models/user.model");
 
+// require Cloudinary
+const fileUploader = require("./../config/cloudinary.config");
+const { populate } = require(".././models/user.model");
+
 router.get("/create-event", isLoggedIn, (req, res) => {
   res.render("event/create-event");
 });
 
-router.post("/create-event", (req, res) => {
-  const newEvent = req.body;
+let user;
 
-  Event.create(newEvent)
+router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
+  // User.find(req.session.user);
+  console.log("Luke, I am your User", req.session.user);
+
+  const { title, coin, date, location, description } = req.body;
+
+  let createdEventDoc;
+  Event.create({
+    title,
+    coin,
+    date,
+    location,
+    description,
+    organizer: req.session.user._id,
+    eventHeader: req.file.path,
+  })
     .then((createdEvent) => {
-      const newEventId = createdEvent._id;
-      return Event.findById(newEventId);
-    })
-    .then((foundEvent) => {
-      console.log(foundEvent);
+      createdEventDoc = createdEvent;
 
-      res.render("event/event-details", { event: foundEvent });
+      return User.findByIdAndUpdate(
+        req.session.user._id,
+        { $push: { eventCreated: createdEvent._id } },
+        { new: true }
+      );
+    })
+    .then((updatedUser) => {
+      const eventId = createdEventDoc._id;
+
+      return Event.findById(eventId).populate("organizer");
+    })
+    .then((populatedEvent) => {
+      res.render("event/event-details", { event: populatedEvent });
     })
     .catch((err) => console.log(err));
   //console.log(newEvent);
 });
 
-router.get("/:eventId", (req, res) => {
+router.get("/events/:eventId", (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findById(eventId)

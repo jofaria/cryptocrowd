@@ -13,6 +13,8 @@ const User = require(".././models/user.model");
 
 const isLoggedIn = require("./../middleware/isLoggedIn");
 
+const fileUploader = require("./../config/cloudinary.config");
+
 //Auth Routes GO HERE!
 
 // GET  /signup
@@ -20,7 +22,7 @@ router.get("/signup", (req, res) => {
   res.render("auth/signup-form");
 });
 
-router.post("/signup", (req, res) => {
+router.post("/signup", fileUploader.single("profileImg"), (req, res) => {
   const { username, password } = req.body;
 
   console.log(username);
@@ -56,14 +58,11 @@ router.post("/signup", (req, res) => {
       const salt = bcrypt.genSaltSync(bcryptSalt);
       const hashPass = bcrypt.hashSync(password, salt);
 
-      const newUser = new User({
-        username: username,
-        password: hashPass,
-      });
-
-      newUser
-        .save()
-        .then(() => res.redirect("/login"))
+      User.create({ username, password: hashPass, profileImg: req.file.path })
+        .then((createdUser) => {
+          console.log(createdUser);
+          res.redirect("/login");
+        })
         .catch((err) => next(err));
     })
     .catch((err) => next(err));

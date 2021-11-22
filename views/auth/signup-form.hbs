@@ -1,6 +1,6 @@
 {{! views/auth/signup-form.hbs  }}
 
-<form id="form" action="/signup" method="POST">
+<form id="form" action="/signup" method="POST" enctype="multipart/form-data">
 
   <label for="username">Username</label><br />
   <input type="text" name="username" placeholder="Your username" />
@@ -8,7 +8,8 @@
   <label for="password">Password</label><br />
   <input type="password" name="password" placeholder="Your password" />
 
-  <input type="file" name="image" />
+  <label for="profileImg">Profile image</label><br />
+  <input type="file" name="profileImg" />
   <br />
   <button type="submit">Create account</button>
 </form>
