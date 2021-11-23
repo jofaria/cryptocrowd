@@ -140,7 +140,7 @@ router.get("/events/delete/:eventId", (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findByIdAndDelete(eventId).then((deletedEvent) => {
-    res.render("index");
+    res.redirect("/");
   });
 });
 
