@@ -29,12 +29,12 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
     return;
   }
 
-  // if (eventHeader !== req.file.path) {
-  // res.render("event/create-event", {
-  // errorMessage: "Provide a cover image",
-  // });
-  // return;
-  // }
+  if (!req.file.path) {
+    res.render("event/create-event", {
+      errorMessage: "Provide a cover image",
+    });
+    return;
+  }
 
   let createdEventDoc;
   Event.create({

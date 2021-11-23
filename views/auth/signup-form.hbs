@@ -1,19 +1,54 @@
 {{! views/auth/signup-form.hbs  }}
 
-<form id="form" action="/signup" method="POST" enctype="multipart/form-data">
+{{! <img
+    class="mb-4"
+    src="/docs/5.1/assets/brand/bootstrap-logo.svg"
+    alt=""
+    width="72"
+    height="57"
+  /> }}
 
-  <label for="username">Username</label><br />
-  <input type="text" name="username" placeholder="Your username" />
-  <br />
-  <label for="password">Password</label><br />
-  <input type="password" name="password" placeholder="Your password" />
-
-  <label for="profileImg">Profile image</label><br />
+{{! <label for="profileImg">Profile image</label><br />
   <input type="file" name="profileImg" />
-  <br />
-  <button type="submit">Create account</button>
-</form>
+  <br /> }}
+<div class="form-container">
+  <main class="form-sign">
 
+    <h1 class="h3 mb-3 fw-normal">Please sign up</h1>
+    <form action="/signup" method="POST">
+      {{! <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> }}
+
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control"
+          id="floatingInput"
+          name="username"
+          placeholder="Username"
+        />
+        <label for="floatingInput">Username</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          name="password"
+          placeholder="Password"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+
+      {{! <div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label> }}
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+      <p class="mt-5 mb-3 text-muted">© Joana and Sillas</p>
+    </form>
+
+  </main>
+</div>
 {{! error message display: }}
 
 {{#if errorMessage}}
