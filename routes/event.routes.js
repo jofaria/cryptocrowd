@@ -3,12 +3,12 @@ const Event = require("./../models/event.model");
 const isLoggedIn = require("./../middleware/isLoggedIn");
 
 // require Users
-const User = require(".././models/user.model");
+const User = require("./../models/user.model");
 
 // require Cloudinary
 const fileUploader = require("./../config/cloudinary.config");
-const { populate } = require(".././models/user.model");
-const isOrganizer = require("../middleware/isOrganizer");
+const { populate } = require("./../models/user.model");
+const isOrganizer = require("./../middleware/isOrganizer");
 
 router.get("/create-event", isLoggedIn, (req, res) => {
   res.render("event/create-event");
