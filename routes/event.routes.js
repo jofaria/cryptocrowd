@@ -7,8 +7,8 @@ const User = require("./../models/user.model");
 
 // require Cloudinary
 const fileUploader = require("./../config/cloudinary.config");
-const { populate } = require("./../models/user.model");
 const isOrganizer = require("./../middleware/isOrganizer");
+const { findByIdAndDelete } = require("./../models/user.model");
 
 router.get("/create-event", isLoggedIn, (req, res) => {
   res.render("event/create-event");
@@ -29,12 +29,12 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
     return;
   }
 
-  if (!eventHeader) {
-    res.render("event/create-event", {
-      errorMessage: "Provide a cover image",
-    });
-    return;
-  }
+  // if (eventHeader !== req.file.path) {
+  // res.render("event/create-event", {
+  // errorMessage: "Provide a cover image",
+  // });
+  // return;
+  // }
 
   let createdEventDoc;
   Event.create({
@@ -136,7 +136,12 @@ router.post(
   }
 );
 
-module.exports = router;
+router.get("/events/delete/:eventId", (req, res) => {
+  const eventId = req.params.eventId;
 
-//619ccd29ed614a4cece22c54
-//619ccdc40c15c598ccbb2b4a
+  Event.findByIdAndDelete(eventId).then((deletedEvent) => {
+    res.render("index");
+  });
+});
+
+module.exports = router;
