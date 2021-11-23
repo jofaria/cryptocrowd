@@ -65,7 +65,9 @@ router.post("/signup", fileUploader.single("profileImg"), (req, res) => {
         })
         .catch((err) => next(err));
     })
-    .catch((err) => next(err));
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.get("/login", (req, res) => {
