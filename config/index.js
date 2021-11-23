@@ -47,7 +47,7 @@ module.exports = (app) => {
   );
 
   const MONGO_URI =
-    process.env.MONGODB_URI || "mongodb://localhost/02-node-auth";
+    process.env.MONGODB_URI || "mongodb://localhost/cryptocrowd";
 
   // Sesssion / cookie middleware  --> req.session
   app.use(
