@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 // require Users
-const User = require(".././models/user.model");
+const User = require("./../models/User.model");
 
 // require isLoggedin middleware
 
