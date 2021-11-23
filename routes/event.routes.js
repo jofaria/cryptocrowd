@@ -8,6 +8,7 @@ const User = require(".././models/user.model");
 // require Cloudinary
 const fileUploader = require("./../config/cloudinary.config");
 const { populate } = require(".././models/user.model");
+const isOrganizer = require("../middleware/isOrganizer");
 
 router.get("/create-event", isLoggedIn, (req, res) => {
   res.render("event/create-event");
@@ -62,4 +63,52 @@ router.get("/events/:eventId", (req, res) => {
     .catch((err) => console.log(err));
 });
 
+router.get("/events/edit/:eventId", (req, res) => {
+  const eventId = req.params.eventId;
+
+  Event.findById(eventId)
+    .then((foundEvent) => {
+      res.render("event/edit-event", { event: foundEvent });
+    })
+    .catch((err) => console.log(err));
+});
+
+//router.get("/events/edit/:eventId", (req, res) => {
+// res.render("event/edit-event");
+// });
+
+router.post(
+  "/events/edit/:eventId",
+  fileUploader.single("eventHeader"),
+  (req, res) => {
+    const eventId = req.params.eventId;
+    const { title, coin, date, description, location } = req.body;
+    console.log(eventId);
+
+    Event.findByIdAndUpdate(
+      eventId,
+      {
+        title,
+        coin,
+        date,
+        description,
+        location,
+        organizer: req.session.user._id,
+        eventHeader: req.file.path,
+      },
+      { new: true }
+    )
+      .then((foundEvent) => {
+        console.log("this is the found and updated even", foundEvent);
+        res.render("event/event-details", { event: foundEvent });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+);
+
 module.exports = router;
+
+//619ccd29ed614a4cece22c54
+//619ccdc40c15c598ccbb2b4a
