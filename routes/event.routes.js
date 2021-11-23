@@ -20,7 +20,21 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
   // User.find(req.session.user);
   console.log("Luke, I am your User", req.session.user);
 
-  const { title, coin, date, location, description } = req.body;
+  const { title, coin, date, location, description, eventHeader } = req.body;
+
+  if (!title || !coin || !date || !location || !description) {
+    res.render("event/create-event", {
+      errorMessage: "Fill all the mandatory fields",
+    });
+    return;
+  }
+
+  if (!eventHeader) {
+    res.render("event/create-event", {
+      errorMessage: "Provide a cover image",
+    });
+    return;
+  }
 
   let createdEventDoc;
   Event.create({
@@ -84,6 +98,20 @@ router.post(
     const eventId = req.params.eventId;
     const { title, coin, date, description, location } = req.body;
     console.log(eventId);
+
+    if (!title || !coin || !date || !location || !description) {
+      res.render("event/create-event", {
+        errorMessage: "Fill all the mandatory fields",
+      });
+      return;
+    }
+
+    if (!eventHeader) {
+      res.render("event/create-event", {
+        errorMessage: "Provide a cover image",
+      });
+      return;
+    }
 
     Event.findByIdAndUpdate(
       eventId,
