@@ -33,6 +33,9 @@
         <input type="checkbox" value="remember-me"> Remember me
       </label> }}
 
+{{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+{{/if}}
         <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
         <p class="mt-5 mb-3 text-muted">© Joana and Sillas</p>
       </div>
@@ -40,7 +43,3 @@
   </main>
 </div>
 {{! error message display: }}
-
-{{#if errorMessage}}
-  <div class="error-message">{{errorMessage}}</div>
-{{/if}}

@@ -147,7 +147,19 @@ router.post(
   }
 );
 
-router.get("/events/delete/:eventId", isOrganizer, (req, res) => {
+// router.get("/events/delete/:eventId", (req, res) => {
+//   const eventId = req.params.eventId;
+
+//   Event.findById(eventId)
+//     .then((foundEvent) => {
+//       res.render("event/delete-event", { event: foundEvent });
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
+
+router.post("/events/delete/:eventId", (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findByIdAndDelete(eventId).then((deletedEvent) => {
