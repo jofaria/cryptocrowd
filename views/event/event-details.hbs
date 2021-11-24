@@ -4,6 +4,11 @@
 <h2>Coin: {{event.coin}}</h2>
 <p>Description: {{event.description}}</p>
 <p>Attending: {{event.attendees}}</p>
+
+<form action="{{event.id}}" method="POST">
+  <a href="/"><button>Attend</button></a>
+</form>
+
 {{#if isOrganizer}}
   <form action="delete/{{event.id}}" method="POST">
     <a href="delete/{{event.id}}"><button type="submit">Delete</button></a>
@@ -12,4 +17,7 @@
 
 {{/if}}
 
+{{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+{{/if}}
 {{!-- {{/}} --}}

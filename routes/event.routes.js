@@ -147,18 +147,6 @@ router.post(
   }
 );
 
-// router.get("/events/delete/:eventId", (req, res) => {
-//   const eventId = req.params.eventId;
-
-//   Event.findById(eventId)
-//     .then((foundEvent) => {
-//       res.render("event/delete-event", { event: foundEvent });
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
 router.post("/events/delete/:eventId", (req, res) => {
   const eventId = req.params.eventId;
 
@@ -167,4 +155,72 @@ router.post("/events/delete/:eventId", (req, res) => {
   });
 });
 
+router.post("/events/:eventId", async (req, res) => {
+  try {
+    const eventId = req.params.eventId;
+    const userId = req.session.user._id;
+    console.log("1");
+    const foundEvent = await Event.findById(eventId);
+    console.log("2");
+
+    const foundUser = await User.findById(userId);
+    console.log("3");
+
+    if (foundUser.attending.length == 0) {
+      return User.findByIdAndUpdate(
+        userId,
+        { $push: { attending: eventId } },
+        { new: true }
+      );
+    } else {
+      console.log("4");
+
+      foundUser.attending.forEach((event) => {
+        if (event == eventId) {
+          console.log("5");
+          res.render("event/event-details", {
+            errorMessage: "Already attending",
+            event: foundEvent,
+          });
+        } else {
+          return User.findByIdAndUpdate(
+            userId,
+            { $push: { attending: eventId } },
+            { new: true }
+          );
+          res.redirect("/");
+        }
+      });
+    }
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// console.log(userId);
+// console.log(eventId);
+
+// return User.findByIdAndUpdate(
+//   userId,
+//   { $push: { attending: eventId } },
+//   { new: true }
+// ).then((foundUser) => {
+//   foundUser.attending.push(eventId);}
+
+//   res.redirect("/");
+//    catch (err) {
+//     console.log(err);
+//   }
+// });
+
 module.exports = router;
+
+// User.findByIdAndUpdate(
+//   userId,
+//   { $push: { attending: eventId } },
+//   { new: true }
+// ).then((foundUser) => {
+//   foundUser.attending.push(eventId);
+// });
+
+// attending.include()
