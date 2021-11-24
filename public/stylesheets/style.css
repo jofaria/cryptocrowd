@@ -68,3 +68,8 @@ h1 {
 .attending {
   margin-left: 20px;
 }
+
+#logo {
+  width: 40%;
+  height: auto;
+}

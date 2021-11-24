@@ -18,8 +18,4 @@ router.get("/", (req, res, next) => {
 // GET /secret
 // We use the isLoggedIn middleware to protect the route
 
-router.get("/create-event", isLoggedIn, (req, res, next) => {
-  res.render("event/create-event");
-});
-
 module.exports = router;

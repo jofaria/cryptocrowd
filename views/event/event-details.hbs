@@ -1,4 +1,91 @@
 {{!-- {{event}} --}}
+<div id="container">
+  <header class="p-3 bg-dark text-white">
+    <div class="container">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+        >
+
+          <img id="logo" src="/images/cryptoc-logo.jpeg" />
+
+        </a>
+        <ul
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+        ></ul>
+
+        <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+            <input
+              type="search"
+              class="form-control form-control-dark"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+          </form> -->
+
+        <ul
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-end mb-md-0"
+        >
+          <li><a href="/create-event">
+              <button type="button" class="btn btn-outline-light me-2">
+                Create an Event
+              </button>
+            </a></li>
+
+        </ul>
+        <div class="flex-shrink-0 dropdown">
+
+          <a
+            href="/"
+            class="d-block link-dark text-decoration-none"
+            id="dropdownUser2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="/images/user.png"
+              alt="mdo"
+              width="45"
+              height="45"
+              class="rounded-circle"
+            />
+          </a>
+          <ul
+            class="dropdown-menu text-small shadow"
+            aria-labelledby="dropdownUser2"
+          >
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="/logout">Log out</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ? HEADER AFTER LOGIN -->
+
+  {{! <a href="/create-event">
+    <button>Create a new event</button>
+  </a> }}
+  {{! 
+  <a href="/logout">
+    <button>Logout</button>
+  </a> }}
+  {{! 
+  <a href="/signup">
+    <button>Sign up</button>
+  </a> }}
+  {{! 
+  <a href="/login">
+    <button>Login</button>
+  </a> }}
+
+</div>
 
 <div class="jumbotron jumbotron-fluid">
   <img src="{{event.eventHeader}}" class="img-fluid" alt="Responsive image" />
