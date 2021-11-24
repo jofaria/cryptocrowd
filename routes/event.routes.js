@@ -29,11 +29,12 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
     return;
   }
 
+  let tempImage;
+
   if (!req.file.path) {
-    res.render("event/create-event", {
-      errorMessage: "Provide a cover image",
-    });
-    return;
+    tempImage = "./../public/images/website_header_blue.png";
+  } else {
+    tempImage = req.file.path;
   }
 
   let createdEventDoc;
@@ -44,7 +45,7 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
     location,
     description,
     organizer: req.session.user._id,
-    eventHeader: req.file.path,
+    eventHeader: tempImage,
   })
     .then((createdEvent) => {
       createdEventDoc = createdEvent;
@@ -70,9 +71,19 @@ router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
 router.get("/events/:eventId", (req, res) => {
   const eventId = req.params.eventId;
 
+  let isOrg = false;
   Event.findById(eventId)
     .then((foundEvent) => {
-      res.render("event/event-details", { event: foundEvent });
+      if (req.session.user._id == foundEvent.organizer) {
+        isOrg = true;
+      }
+      return foundEvent;
+    })
+    .then((foundEvent) => {
+      res.render("event/event-details", {
+        event: foundEvent,
+        isOrganizer: isOrg,
+      });
     })
     .catch((err) => console.log(err));
 });
@@ -82,7 +93,9 @@ router.get("/events/edit/:eventId", (req, res) => {
 
   Event.findById(eventId)
     .then((foundEvent) => {
-      res.render("event/edit-event", { event: foundEvent });
+      res.render("event/edit-event", {
+        event: foundEvent,
+      });
     })
     .catch((err) => console.log(err));
 });
@@ -97,7 +110,6 @@ router.post(
   (req, res) => {
     const eventId = req.params.eventId;
     const { title, coin, date, description, location } = req.body;
-    console.log(eventId);
 
     if (!title || !coin || !date || !location || !description) {
       res.render("event/create-event", {
@@ -106,13 +118,12 @@ router.post(
       return;
     }
 
-    if (!eventHeader) {
-      res.render("event/create-event", {
-        errorMessage: "Provide a cover image",
-      });
-      return;
-    }
-
+    // if (!eventHeader) {
+    // res.render("event/create-event", {
+    // errorMessage: "Provide a cover image",
+    // });
+    // return;
+    // }
     Event.findByIdAndUpdate(
       eventId,
       {
@@ -136,7 +147,7 @@ router.post(
   }
 );
 
-router.get("/events/delete/:eventId", (req, res) => {
+router.get("/events/delete/:eventId", isOrganizer, (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findByIdAndDelete(eventId).then((deletedEvent) => {

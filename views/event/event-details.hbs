@@ -4,5 +4,9 @@
 <h2>Coin: {{event.coin}}</h2>
 <p>Description: {{event.description}}</p>
 <p>Attending: {{event.attendees}}</p>
+{{#if isOrganizer}}
+  <button type="submit">Delete</button>
+  <button type="submit">Edit</button>
+{{/if}}
 
 {{!-- {{/}} --}}
