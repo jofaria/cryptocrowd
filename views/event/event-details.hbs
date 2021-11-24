@@ -1,21 +1,45 @@
 {{!-- {{event}} --}}
 
 <div class="jumbotron jumbotron-fluid">
+  <img src="{{event.eventHeader}}" class="img-fluid" alt="Responsive image" />
   <div class="container">
-    <img src="{{event.eventHeader}}" class="img-fluid" alt="Responsive image" />
-    <h1 class="display-4">{{event.title}}</h1>
-    <p class="lead">{{event.description}}</p>
+    <div class="container">
+      <h1 class="display-4">{{event.title}}</h1>
+    </div>
+    <div class="container">
+      <form action="{{event.id}}" method="POST">
+        <a href="/"><button class="btn btn-success">Attend</button></a>
+      </form>
+    </div>
   </div>
+</div>
+
+<div class="event-info">
+  <div class="coin">
+    <h4>Coin: {{event.coin}}</h4>
+  </div>
+  <div class="location">
+    <h4>Location: {{event.location}}</h4>
+  </div>
+  <div class="Attending">
+    <h4>
+      Attending:
+      {{event.attendees.length}}
+    </h4>
+  </div>
+</div>
+
+<div class="event-description">
+  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum laborum
+    quod maiores illo eveniet consequatur autem repellat! Velit voluptas qui
+    voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
+    inventore.</p>
 </div>
 
 <h1>{{event.title}}</h1>
 <h2>Coin: {{event.coin}}</h2>
-<p>Description: {{event.description}}</p>
-<p>Attending: {{event.attendees}}</p>
-
-<form action="{{event.id}}" method="POST">
-  <a href="/"><button class="btn btn-success">Attend</button></a>
-</form>
+<p>Attending: {{event.attendees.length}}</p>
+<p class="lead">{{event.description}}</p>
 
 {{#if isOrganizer}}
   <form action="delete/{{event.id}}" method="POST">

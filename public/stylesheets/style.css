@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -27,6 +26,7 @@ h1 {
   margin: auto;
 }
 
+/* This is the cards */
 .center-div {
   display: flex;
   flex-direction: column;
@@ -40,4 +40,31 @@ h1 {
 
 .card-img-top {
   border-radius: 6px;
+}
+
+/* THis is the view-events page */
+
+.jumbotron {
+  display: flex;
+  flex-direction: column;
+}
+
+.img-fluid {
+  max-height: 600px;
+}
+
+.event-info {
+  display: flex;
+  justify-content: center;
+}
+
+.coin {
+  margin-right: 20px;
+}
+.location {
+  margin-left: 20px;
+}
+
+.attending {
+  margin-left: 20px;
 }
