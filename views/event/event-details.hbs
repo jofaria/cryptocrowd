@@ -1,13 +1,20 @@
 {{!-- {{event}} --}}
 
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <img src="{{event.eventHeader}}" class="img-fluid" alt="Responsive image" />
+    <h1 class="display-4">{{event.title}}</h1>
+    <p class="lead">{{event.description}}</p>
+  </div>
+</div>
+
 <h1>{{event.title}}</h1>
-<img src={{event.eventHeader}} />
 <h2>Coin: {{event.coin}}</h2>
 <p>Description: {{event.description}}</p>
 <p>Attending: {{event.attendees}}</p>
 
 <form action="{{event.id}}" method="POST">
-  <a href="/"><button>Attend</button></a>
+  <a href="/"><button class="btn btn-success">Attend</button></a>
 </form>
 
 {{#if isOrganizer}}
