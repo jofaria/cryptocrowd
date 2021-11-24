@@ -166,30 +166,29 @@ router.post("/events/:eventId", async (req, res) => {
     const foundUser = await User.findById(userId);
     console.log("3");
 
-    if (foundUser.attending.length == 0) {
-      return User.findByIdAndUpdate(
+    if (foundUser.attending.includes(eventId)) {
+      User.findByIdAndUpdate(
+        userId,
+        { $pull: { attending: eventId } },
+        { new: true }
+      )
+        .then(() => {
+          res.render("event/event-details", {
+            errorMessage: "Not attending anymore!",
+            event: foundEvent,
+          });
+        })
+        .catch((err) => console.log(err));
+    } else {
+      User.findByIdAndUpdate(
         userId,
         { $push: { attending: eventId } },
         { new: true }
-      );
-    } else {
-      console.log("4");
-
-      foundUser.attending.forEach((event) => {
-        if (event == eventId) {
-          console.log("5");
-          res.render("event/event-details", {
-            errorMessage: "Already attending",
-            event: foundEvent,
-          });
-        } else {
-          return User.findByIdAndUpdate(
-            userId,
-            { $push: { attending: eventId } },
-            { new: true }
-          );
-          res.redirect("/");
-        }
+      ).then(() => {
+        res.render("event/event-details", {
+          errorMessage: "Success!",
+          event: foundEvent,
+        });
       });
     }
   } catch (err) {
@@ -197,30 +196,4 @@ router.post("/events/:eventId", async (req, res) => {
   }
 });
 
-// console.log(userId);
-// console.log(eventId);
-
-// return User.findByIdAndUpdate(
-//   userId,
-//   { $push: { attending: eventId } },
-//   { new: true }
-// ).then((foundUser) => {
-//   foundUser.attending.push(eventId);}
-
-//   res.redirect("/");
-//    catch (err) {
-//     console.log(err);
-//   }
-// });
-
 module.exports = router;
-
-// User.findByIdAndUpdate(
-//   userId,
-//   { $push: { attending: eventId } },
-//   { new: true }
-// ).then((foundUser) => {
-//   foundUser.attending.push(eventId);
-// });
-
-// attending.include()

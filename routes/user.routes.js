@@ -4,7 +4,13 @@ const Event = require("./../models/event.model");
 const User = require("./../models/user.model");
 
 router.get("/profile", isLoggedIn, (req, res) => {
-  res.render("user/profile");
+  const userId = req.session.user._id;
+
+  User.findById(userId)
+    .populate("attending")
+    .then((foundUser) => {
+      res.render("user/profile", { user: foundUser });
+    });
 });
 
 module.exports = router;
