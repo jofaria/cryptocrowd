@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -40,4 +39,9 @@ h1 {
 
 .card-img-top {
   border-radius: 6px;
+}
+
+#logo {
+  width: 40%;
+  height: auto;
 }

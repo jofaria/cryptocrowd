@@ -16,59 +16,64 @@ router.get("/create-event", isLoggedIn, (req, res) => {
 
 let user;
 
-router.post("/create-event", fileUploader.single("eventHeader"), (req, res) => {
-  // User.find(req.session.user);
-  console.log("Luke, I am your User", req.session.user);
+router.post(
+  "/create-event",
+  isLoggedIn,
+  fileUploader.single("eventHeader"),
+  (req, res) => {
+    // User.find(req.session.user);
+    console.log("Luke, I am your User", req.session.user);
 
-  const { title, coin, date, location, description, eventHeader } = req.body;
+    const { title, coin, date, location, description, eventHeader } = req.body;
 
-  if (!title || !coin || !date || !location || !description) {
-    res.render("event/create-event", {
-      errorMessage: "Fill all the mandatory fields",
-    });
-    return;
+    if (!title || !coin || !date || !location || !description) {
+      res.render("event/create-event", {
+        errorMessage: "Fill all the mandatory fields",
+      });
+      return;
+    }
+
+    let tempImage;
+
+    if (!req.file.path) {
+      tempImage = "./../public/images/website_header_blue.png";
+    } else {
+      tempImage = req.file.path;
+    }
+
+    let createdEventDoc;
+    Event.create({
+      title,
+      coin,
+      date,
+      location,
+      description,
+      organizer: req.session.user._id,
+      eventHeader: tempImage,
+    })
+      .then((createdEvent) => {
+        createdEventDoc = createdEvent;
+
+        return User.findByIdAndUpdate(
+          req.session.user._id,
+          { $push: { eventCreated: createdEvent._id } },
+          { new: true }
+        );
+      })
+      .then((updatedUser) => {
+        const eventId = createdEventDoc._id;
+
+        return Event.findById(eventId).populate("organizer");
+      })
+      .then((populatedEvent) => {
+        res.render("event/event-details", { event: populatedEvent });
+      })
+      .catch((err) => console.log(err));
+    //console.log(newEvent);
   }
+);
 
-  let tempImage;
-
-  if (!req.file.path) {
-    tempImage = "./../public/images/website_header_blue.png";
-  } else {
-    tempImage = req.file.path;
-  }
-
-  let createdEventDoc;
-  Event.create({
-    title,
-    coin,
-    date,
-    location,
-    description,
-    organizer: req.session.user._id,
-    eventHeader: tempImage,
-  })
-    .then((createdEvent) => {
-      createdEventDoc = createdEvent;
-
-      return User.findByIdAndUpdate(
-        req.session.user._id,
-        { $push: { eventCreated: createdEvent._id } },
-        { new: true }
-      );
-    })
-    .then((updatedUser) => {
-      const eventId = createdEventDoc._id;
-
-      return Event.findById(eventId).populate("organizer");
-    })
-    .then((populatedEvent) => {
-      res.render("event/event-details", { event: populatedEvent });
-    })
-    .catch((err) => console.log(err));
-  //console.log(newEvent);
-});
-
-router.get("/events/:eventId", (req, res) => {
+router.get("/events/:eventId", isLoggedIn, (req, res) => {
   const eventId = req.params.eventId;
 
   let isOrg = false;
@@ -88,7 +93,7 @@ router.get("/events/:eventId", (req, res) => {
     .catch((err) => console.log(err));
 });
 
-router.get("/events/edit/:eventId", (req, res) => {
+router.get("/events/edit/:eventId", isLoggedIn, (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findById(eventId)
@@ -106,6 +111,7 @@ router.get("/events/edit/:eventId", (req, res) => {
 
 router.post(
   "/events/edit/:eventId",
+  isLoggedIn,
   fileUploader.single("eventHeader"),
   (req, res) => {
     const eventId = req.params.eventId;
@@ -147,7 +153,7 @@ router.post(
   }
 );
 
-router.post("/events/delete/:eventId", (req, res) => {
+router.post("/events/delete/:eventId", isLoggedIn, (req, res) => {
   const eventId = req.params.eventId;
 
   Event.findByIdAndDelete(eventId).then((deletedEvent) => {
@@ -155,7 +161,7 @@ router.post("/events/delete/:eventId", (req, res) => {
   });
 });
 
-router.post("/events/:eventId", async (req, res) => {
+router.post("/events/:eventId", isLoggedIn, async (req, res) => {
   try {
     const eventId = req.params.eventId;
     const userId = req.session.user._id;
