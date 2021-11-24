@@ -1,1 +1,20 @@
-<h1>Heyo!</h1>
+<h1>Hi, {{user.username}}!</h1>
+
+<div class="center-div">
+
+  {{#each user.attending}}
+    <a href="events/{{this._id}}">
+      <div class="card mb-2 mt-3 shadow-sm">
+        <img src={{this.eventHeader}} class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h1 class="card-title">{{this.title}}</h1>
+          <h6>Coin: {{this.coin}}</h6>
+          <p class="card-text" class="text-muted">
+            {{this.description}}
+          </p>
+        </div>
+      </div>
+    </a>
+  {{/each}}
+
+</div>
