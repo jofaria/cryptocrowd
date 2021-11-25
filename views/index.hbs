@@ -102,9 +102,29 @@
 
   <div class="jumbotron jumbotron-fluid">
     <div id="hero" class="container">
-      <h1 class="display-4">Find
-        <span id="hero-title">cryptocurrency events </span>
-        around the globe.</h1>
+      <div>
+        <h1 class="display-4">Find
+          <span id="hero-title">cryptocurrency events </span>
+          around the globe.</h1>
+        <br />
+        <form id="search-bar" class="form-inline" action="/" method="GET">
+          {{! <label>Search events:</label> }}
+          <input
+            class="form-control mr-sm-2"
+            type="text"
+            name="eventSearch"
+            placeholder="Search by title, coin, location..."
+            aria-label="Search"
+          />
+          <button
+            class="btn btn-success my-2 my-sm-0"
+            type="submit"
+          >Search</button>
+        </form>
+        {{! <input type="text" name="eventSearch" />
+          <button type="submit">Search</button> }}
+
+      </div>
       <img class="img-fluid" src="/images/element.png" />
     </div>
   </div>

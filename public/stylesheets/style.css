@@ -285,3 +285,15 @@ div .error-message {
 .error-page-container > * {
   margin: 20px 0 0 50px;
 }
+
+#search-bar {
+  display: flex;
+}
+
+#search-bar input {
+  max-width: 400px;
+}
+
+#search-bar button {
+  margin: 0 0 0 20px;
+}
