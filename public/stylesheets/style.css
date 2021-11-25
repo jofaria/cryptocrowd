@@ -98,7 +98,7 @@ a:active {
 }
 
 .img-fluid {
-  max-height: 500px;
+  max-height: 600px;
 }
 
 .event-info {
@@ -134,6 +134,7 @@ a:active {
 }
 
 .headercontainer {
+  margin-top: 20px;
   display: flex;
   justify-content: center;
 }
@@ -223,6 +224,18 @@ green: #13e4b2
   height: 100%;
   width: auto;
   position: relative;
+}
+
+@media only screen and (max-width: 995px) {
+  #hero img {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 995px) {
+  #hero {
+    margin: 60px 0px;
+  }
 }
 
 span {
