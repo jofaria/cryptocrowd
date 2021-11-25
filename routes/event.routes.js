@@ -21,9 +21,6 @@ router.post(
   isLoggedIn,
   fileUploader.single("eventHeader"),
   (req, res) => {
-    // User.find(req.session.user);
-    console.log("Luke, I am your User", req.session.user);
-
     const { title, coin, date, location, description, eventHeader } = req.body;
 
     if (!title || !coin || !date || !location || !description) {
@@ -66,7 +63,9 @@ router.post(
         return Event.findById(eventId).populate("organizer");
       })
       .then((populatedEvent) => {
-        res.render("event/event-details", { event: populatedEvent });
+        let id = populatedEvent._id;
+        console.log(populatedEvent._id);
+        res.redirect(`/events/${id}`);
       })
       .catch((err) => console.log(err));
     //console.log(newEvent);
