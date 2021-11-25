@@ -3,10 +3,15 @@
 
   <main class="form-sign">
 
-    <h1 class="h3 mb-3 fw-normal">Log In</h1>
+          <img id="logo" src="/images/cryptoc-logo.jpeg" />
+    
+         <div class="form-spacing">
+    
+    <h1 class="h3 mb-3 fw-normal">Please Log In</h1>
     <form action="/login" method="POST">
       {{! <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> }}
      
+
         <div class="form-floating">
           <input
             type="text"
@@ -28,6 +33,7 @@
           <label for="floatingPassword">Password</label>
         </div>
 
+
         {{! <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
@@ -37,9 +43,12 @@
   <div class="error-message">{{errorMessage}}</div>
 {{/if}}
         <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+            </div>
+
         <p class="mt-5 mb-3 text-muted">© Joana and Sillas</p>
       </div>
     </form>
+
   </main>
 </div>
 {{! error message display: }}

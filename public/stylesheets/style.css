@@ -70,6 +70,25 @@ h1 {
 }
 
 #logo {
-  width: 40%;
+  width: 150px;
   height: auto;
 }
+
+/* body {
+  background-color: #212529;
+  color: whitesmoke;
+} */
+
+div .text-end a {
+  text-decoration: none;
+}
+
+main.form-sign {
+  text-align: center;
+}
+
+div .form-spacing {
+  padding: 10px;
+}
+/* 
+#13e4b2 */
