@@ -32,8 +32,8 @@ router.post(
 
     let tempImage;
 
-    if (!req.file.path) {
-      tempImage = "./../public/images/website_header_blue.png";
+    if (!req.file) {
+      tempImage = "/images/website_header_blue.png";
     } else {
       tempImage = req.file.path;
     }
@@ -77,6 +77,8 @@ router.get("/events/:eventId", isLoggedIn, (req, res) => {
 
   let isOrg = false;
   Event.findById(eventId)
+    .populate("organizer")
+    .populate("attendees")
     .then((foundEvent) => {
       if (req.session.user._id == foundEvent.organizer) {
         isOrg = true;

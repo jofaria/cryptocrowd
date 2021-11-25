@@ -8,6 +8,7 @@ router.get("/profile", isLoggedIn, (req, res) => {
 
   User.findById(userId)
     .populate("attending")
+    .populate("eventCreated")
     .then((foundUser) => {
       res.render("user/profile", { user: foundUser });
     });

@@ -1,16 +1,41 @@
+/* ? colors 
+dark: #212529
+ghostwhite: #f8f9fa
+green: #13e4b2
+
+*/
+
 body {
   font: 14px "Open Sans", "Montserrat", sans-serif;
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   background-color: #f8f9fa;
 }
 
-a {
-  color: #00b7ff;
-}
-
 /* h1 {
   color: 15px;
 } */
+
+a:link,
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+
+/* visited link */
+
+/* mouse over link */
+a:hover,
+a:active {
+  color: #13e4b2;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited {
+  background-color: #13e4b2;
+  border-color: #13e4b2;
+}
 
 .form-container {
   display: flex;
@@ -54,6 +79,11 @@ a {
 .card {
   max-width: 950px;
   border-radius: 15px;
+  text-decoration: none;
+}
+
+.card-body > * {
+  text-decoration: none;
 }
 
 .card-img-top {
@@ -74,6 +104,22 @@ a {
 .event-info {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+}
+
+.event-info img {
+  width: 50px;
+}
+
+.event-info > div {
+  min-width: 100px;
+}
+
+.event-info > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .coin {
@@ -87,10 +133,27 @@ a {
   margin-left: 20px;
 }
 
+.headercontainer {
+  display: flex;
+  justify-content: center;
+}
+.btncontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btncontainer > * {
+  margin: 10px;
+}
+
 .event-description {
   margin-top: 20px;
   line-height: 1.6;
   max-width: 500px;
+}
+
+.all-eventinfo {
+  margin: 0 50px;
 }
 
 .main-content {
@@ -142,6 +205,14 @@ ghostwhite: #f8f9fa
 green: #13e4b2
 
 */
+
+.profile-view {
+  margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #hero {
   display: flex;
   flex-direction: row;
