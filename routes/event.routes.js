@@ -33,7 +33,7 @@ router.post(
     let tempImage;
 
     if (!req.file) {
-      tempImage = "/images/website_header_blue.png";
+      tempImage = "/images/defaultcover.png";
     } else {
       tempImage = req.file.path;
     }
@@ -153,7 +153,7 @@ router.post(
     )
       .then((foundEvent) => {
         console.log("this is the found and updated even", foundEvent);
-        res.render("event/event-details", { event: foundEvent });
+        res.redirect(`/events/${foundEvent.id}`);
       })
       .catch((err) => {
         console.log(err);

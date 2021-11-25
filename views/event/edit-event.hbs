@@ -83,9 +83,9 @@
 
 </div>
 
-<h1>Edit your event</h1>
+{{! <h1>Edit your event</h1> }}
 
-<form
+{{!-- <form
   id="form"
   action="/events/edit/{{event._id}}"
   method="POST"
@@ -118,9 +118,86 @@
 
   <br />
   <button type="submit">Create event</button>
-</form>
+</form> --}}
 
 {{! error message display: }}
+
+<div id="create-event-container">
+  <h1>Edit Your Event</h1>
+
+  {{#if errorMessage}}
+    <div class="error-message"> * {{errorMessage}}</div>
+  {{/if}}
+
+  <form
+    id="form"
+    action="/events/edit/{{event._id}}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <div class="form-group">
+      <label for="title">Title of the event *</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="{{event.title}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="coin">Cryptocurrency *</label>
+      <input
+        type="text"
+        name="coin"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="{{event.coin}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="location">Location *</label>
+      <input
+        type="text"
+        name="location"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="{{event.location}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="date">Date *</label>
+      <input
+        type="date"
+        name="date"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder="{{event.date}}"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description *</label>
+      <textarea
+        class="form-control"
+        name="description"
+        id="exampleFormControlTextarea1"
+        placeholder="{{event.description}}"
+        rows="3"
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="eventHeader">Cover image</label>
+      <input
+        type="file"
+        name="eventHeader"
+        class="form-control"
+        id="exampleFormControlInput1"
+        placeholder=""
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Edit Event</button>
+  </form>
+</div>
 
 {{#if errorMessage}}
   <div class="error-message">{{errorMessage}}</div>
