@@ -76,16 +76,23 @@ router.get("/events/:eventId", isLoggedIn, (req, res) => {
   const eventId = req.params.eventId;
 
   let isOrg = false;
+  console.log(req.session.user._id);
   Event.findById(eventId)
     .populate("organizer")
-    .populate("attendees")
     .then((foundEvent) => {
-      if (req.session.user._id == foundEvent.organizer) {
+      console.log("req.session", req.session);
+      console.log("foundEvent.organizer", foundEvent.organizer);
+      if (
+        req.session &&
+        foundEvent.organizer &&
+        req.session.user._id == foundEvent.organizer._id
+      ) {
         isOrg = true;
       }
       return foundEvent;
     })
     .then((foundEvent) => {
+      console.log(isOrg);
       res.render("event/event-details", {
         event: foundEvent,
         isOrganizer: isOrg,

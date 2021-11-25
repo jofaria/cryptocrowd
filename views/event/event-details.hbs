@@ -97,7 +97,6 @@
       <form action="{{event.id}}" method="POST">
         <a href="/"><button class="btn btn-success">Attend</button></a> 
       </form>
-
       {{#if isOrganizer}}
         <a href="edit/{{event.id}}"><button
             type="submit"
@@ -109,12 +108,11 @@
               class="btn btn-danger"
             >Delete</button></a>
         </form>
-
       {{/if}}
 
       {{#if errorMessage}}
-  <div class="error-message">{{errorMessage}}</div>
-{{/if}}
+      <div class="error-message">{{errorMessage}}</div>
+      {{/if}}
 
     </div>
   </div>
@@ -141,8 +139,10 @@
         voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
         inventore.</p>
 
-        <p>This event is organized by: {{event.organizer.username}}</p>
+        {{!-- <p>This event is organized by: {{event.organizer.username}}</p> --}}
     </div>
+
+
 
   </main>
 
