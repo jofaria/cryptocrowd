@@ -1,5 +1,5 @@
 <div id="container">
-  <header class="p-3 bg-dark text-white">
+  <header class="p-3 bg-light text-black">
     <div class="container">
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -9,7 +9,7 @@
           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
         >
 
-          <img id="logo" src="/images/cryptoc-logo.jpeg" />
+          <img class="logo" src="/images/2-ghostwhite.jpeg" />
 
         </a>
         <ul
@@ -25,43 +25,58 @@
             />
           </form> -->
 
-        <ul
-          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-end mb-md-0"
-        >
-          <li><a href="/create-event">
-              <button type="button" class="btn btn-outline-light me-2">
-                Create an Event
-              </button>
-            </a></li>
+        {{#if userIsLoggedIn}}
 
-        </ul>
-        <div class="flex-shrink-0 dropdown">
-
-          <a
-            href="/"
-            class="d-block link-dark text-decoration-none"
-            id="dropdownUser2"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            <img
-              src="/images/user.png"
-              alt="mdo"
-              width="45"
-              height="45"
-              class="rounded-circle"
-            />
-          </a>
           <ul
-            class="dropdown-menu text-small shadow"
-            aria-labelledby="dropdownUser2"
+            class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-end mb-md-0"
           >
-            <li><a class="dropdown-item" href="/profile">Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="/logout">Log out</a></li>
-          </ul>
-        </div>
 
+          </ul>
+          <div class="flex-shrink-0 dropdown">
+            <a id="home-create-event" href="/create-event">
+              <button type="button" class="btn btn-success">Create an Event</button>
+            </a>
+            <a
+              href="/"
+              class="d-block link-dark text-decoration-none"
+              id="dropdownUser2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img
+                src="/images/user.png"
+                alt="mdo"
+                width="45"
+                height="45"
+                class="rounded-circle"
+              />
+            </a>
+            <ul
+              class="dropdown-menu text-small shadow"
+              aria-labelledby="dropdownUser2"
+            >
+              <li><a class="dropdown-item" href="/profile">Profile</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="/logout">Log out</a></li>
+            </ul>
+          </div>
+
+        {{else}}
+          <div class="text-end">
+            <a href="/login">
+              <button
+                type="button"
+                class="btn btn-outline-light me-2 btn-success"
+              >
+                Login
+              </button>
+            </a>
+            <a href="/signup">
+              <button type="button" class="btn btn-light">Sign up</button>
+            </a>
+          </div>
+
+        {{/if}}
       </div>
     </div>
   </header>
@@ -85,5 +100,7 @@
   </a> }}
 
 </div>
-<h1>OOps!</h1>
-<h2>Sorry, we couldn't find this page.</h2>
+<div class="error-page-container">
+  <h1>Oops!</h1>
+  <h2>Sorry, we couldn't find this page.</h2>
+</div>

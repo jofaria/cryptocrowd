@@ -272,3 +272,16 @@ span {
 div .error-message {
   color: #dc3444;
 }
+
+.flex-shrink-0 {
+  display: flex;
+  align-items: center;
+}
+
+.flex-shrink-0 button {
+  margin-right: 40px;
+}
+
+.error-page-container > * {
+  margin: 20px 0 0 50px;
+}
