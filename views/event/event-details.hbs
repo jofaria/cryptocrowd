@@ -90,10 +90,10 @@
 <div class="jumbotron jumbotron-fluid">
   <img src="{{event.eventHeader}}" class="img-fluid" alt="Responsive image" />
   <div class="container">
-    <div class="container">
+    <div class="headercontainer">
       <h1 class="display-4">{{event.title}}</h1>
     </div>
-    <div class="container">
+    <div class="btncontainer">
       <form action="{{event.id}}" method="POST">
         <a href="/"><button class="btn btn-success">Attend</button></a>
       </form>
@@ -112,39 +112,38 @@
 
       {{/if}}
 
+      {{#if errorMessage}}
+  <div class="error-message">{{errorMessage}}</div>
+{{/if}}
+
     </div>
   </div>
 </div>
+<div class="all-eventinfo">
+  <div class="event-info">
+    <div class="coin">
+      <img src="/images/cryptocurrencies.png" alt="">
+      <h4>{{event.coin}}</h4>
+    </div>
+    <div class="location">
+      <img src="/images/pin.png" alt="">
+      <h4>{{event.location}}</h4>
+    </div>
+    <div class="Attending">
+      <img src="/images/group.png" alt="">
+      <h4>{{event.attendees.length}}</h4>
+    </div>
+  </div>
+  <main class="main-content">
+    <div class="event-description">
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum laborum
+        quod maiores illo eveniet consequatur autem repellat! Velit voluptas qui
+        voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
+        inventore.</p>
 
-<div class="event-info">
-  <div class="coin">
-    <h4>Coin: {{event.coin}}</h4>
-  </div>
-  <div class="location">
-    <h4>Location: {{event.location}}</h4>
-  </div>
-  <div class="Attending">
-    <h4>
-      Attending:
-      {{event.attendees.length}}
-    </h4>
-  </div>
-</div>
-<main class="main-content">
-  <div class="event-description">
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum laborum
-      quod maiores illo eveniet consequatur autem repellat! Velit voluptas qui
-      voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
-      inventore.</p>
-  </div>
+        <p>This event is organized by: {{event.organizer.username}}</p>
+    </div>
 
-</main>
-<h1>{{event.title}}</h1>
-<h2>Coin: {{event.coin}}</h2>
-<p>Attending: {{event.attendees.length}}</p>
-<p class="lead">{{event.description}}</p>
+  </main>
 
-{{#if errorMessage}}
-  <div class="error-message">{{errorMessage}}</div>
-{{/if}}
 {{!-- {{/}} --}}

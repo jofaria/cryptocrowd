@@ -1,3 +1,10 @@
+/* ? colors 
+dark: #212529
+ghostwhite: #f8f9fa
+green: #13e4b2
+
+*/
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -8,6 +15,14 @@ a {
 
 h1 {
   color: 15px;
+}
+
+.btn-success,
+.btn-success:hover,
+.btn-success:active,
+.btn-success:visited {
+  background-color: #13e4b2;
+  border-color: #13e4b2;
 }
 
 .form-container {
@@ -38,6 +53,10 @@ h1 {
   border-radius: 15px;
 }
 
+.card-body > * {
+  text-decoration: none;
+}
+
 .card-img-top {
   border-radius: 6px;
 }
@@ -56,6 +75,22 @@ h1 {
 .event-info {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
+}
+
+.event-info img {
+  width: 50px;
+}
+
+.event-info > div {
+  min-width: 100px;
+}
+
+.event-info > * {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .coin {
@@ -69,10 +104,27 @@ h1 {
   margin-left: 20px;
 }
 
+.headercontainer {
+  display: flex;
+  justify-content: center;
+}
+.btncontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.btncontainer > * {
+  margin: 10px;
+}
+
 .event-description {
   margin-top: 20px;
   line-height: 1.6;
   max-width: 500px;
+}
+
+.all-eventinfo {
+  margin: 0 50px;
 }
 
 .main-content {
