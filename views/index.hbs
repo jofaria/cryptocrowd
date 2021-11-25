@@ -13,7 +13,10 @@
 {{! </div> }}
 
 <div id="container">
-  <header class="p-3 bg-dark text-white">
+
+  {{! ! NAVBAR }}
+
+  <header class="p-3 bg-light text-black">
     <div class="container">
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -23,7 +26,7 @@
           class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
         >
 
-          <img id="logo" src="/images/cryptoc-logo.jpeg" />
+          <img class="logo" src="/images/2-ghostwhite.jpeg" />
 
         </a>
         <ul
@@ -52,7 +55,7 @@
 
           </ul>
           <div class="flex-shrink-0 dropdown">
-
+            <button type="button" class="btn btn-primary">Primary</button>
             <a
               href="/"
               class="d-block link-dark text-decoration-none"
@@ -94,6 +97,17 @@
       </div>
     </div>
   </header>
+
+  {{! HERO }}
+
+  <div class="jumbotron jumbotron-fluid">
+    <div id="hero" class="container">
+      <h1 class="display-4">Find
+        <span id="hero-title"> cryptocurrency events </span>
+        around the globe.</h1>
+      <img class="img-fluid" src="/images/element.png" />
+    </div>
+  </div>
 
   <!-- ? HEADER AFTER LOGIN -->
 
