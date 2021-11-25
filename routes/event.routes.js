@@ -33,7 +33,7 @@ router.post(
     let tempImage;
 
     if (!req.file) {
-      tempImage = "/images/website_header_blue.png";
+      tempImage = "/images/defaultcover.png";
     } else {
       tempImage = req.file.path;
     }
