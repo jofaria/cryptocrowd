@@ -268,3 +268,7 @@ div .error-message {
 .flex-shrink-0 button {
   margin-right: 40px;
 }
+
+.error-page-container > * {
+  margin: 20px 0 0 50px;
+}
