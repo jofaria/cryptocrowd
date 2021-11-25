@@ -97,6 +97,21 @@
       <form action="{{event.id}}" method="POST">
         <a href="/"><button class="btn btn-success">Attend</button></a>
       </form>
+
+      {{#if isOrganizer}}
+        <a href="edit/{{event.id}}"><button
+            type="submit"
+            class="btn btn-secondary"
+          >Edit</button></a>
+        <form action="delete/{{event.id}}" method="POST">
+          <a href="delete/{{event.id}}"><button
+              type="submit"
+              class="btn btn-danger"
+            >Delete</button></a>
+        </form>
+
+      {{/if}}
+
     </div>
   </div>
 </div>
@@ -115,26 +130,19 @@
     </h4>
   </div>
 </div>
+<main class="main-content">
+  <div class="event-description">
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum laborum
+      quod maiores illo eveniet consequatur autem repellat! Velit voluptas qui
+      voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
+      inventore.</p>
+  </div>
 
-<div class="event-description">
-  <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum laborum
-    quod maiores illo eveniet consequatur autem repellat! Velit voluptas qui
-    voluptate. Ullam aspernatur ipsam pariatur eos tenetur modi! Possimus,
-    inventore.</p>
-</div>
-
+</main>
 <h1>{{event.title}}</h1>
 <h2>Coin: {{event.coin}}</h2>
 <p>Attending: {{event.attendees.length}}</p>
 <p class="lead">{{event.description}}</p>
-
-{{#if isOrganizer}}
-  <form action="delete/{{event.id}}" method="POST">
-    <a href="delete/{{event.id}}"><button type="submit">Delete</button></a>
-  </form>
-  <a href="edit/{{event.id}}"><button type="submit">Edit</button></a>
-
-{{/if}}
 
 {{#if errorMessage}}
   <div class="error-message">{{errorMessage}}</div>

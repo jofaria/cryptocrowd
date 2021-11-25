@@ -50,7 +50,7 @@ h1 {
 }
 
 .img-fluid {
-  max-height: 600px;
+  max-height: 500px;
 }
 
 .event-info {
@@ -67,6 +67,17 @@ h1 {
 
 .attending {
   margin-left: 20px;
+}
+
+.event-description {
+  margin-top: 20px;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.main-content {
+  display: flex;
+  justify-content: center;
 }
 
 #logo {
