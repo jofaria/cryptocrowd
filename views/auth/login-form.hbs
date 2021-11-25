@@ -8,6 +8,7 @@
          <div class="form-spacing">
     
     <h1 class="h3 mb-3 fw-normal">Please Log In</h1>
+   
     <form action="/login" method="POST">
       {{! <img class="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> }}
      
@@ -38,12 +39,13 @@
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label> }}
+ 
 
-{{#if errorMessage}}
-  <div class="error-message">{{errorMessage}}</div>
-{{/if}}
         <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
             </div>
+            {{#if errorMessage}}
+  <div class="error-message">* {{errorMessage}}</div>
+{{/if}}
 
         <p class="mt-5 mb-3 text-muted">© Joana and Sillas</p>
       </div>

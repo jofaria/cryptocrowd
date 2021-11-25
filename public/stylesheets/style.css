@@ -146,7 +146,6 @@ green: #13e4b2
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-image: url("/");
 }
 
 #hero img {
@@ -157,4 +156,35 @@ green: #13e4b2
 
 span {
   background-color: #13e4b2;
+}
+
+/* CREATE EVENT */
+
+#create-event-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+#create-event-container label {
+  font-size: 16px;
+}
+
+#create-event-container * {
+  padding: 3px;
+}
+
+#create-event-container button {
+  margin-top: 10px;
+  width: 100%;
+  background-color: #13e4b2;
+  border-color: #13e4b2;
+  color: #212529;
+}
+
+div .error-message {
+  color: #dc3444;
 }
