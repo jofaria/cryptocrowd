@@ -80,8 +80,6 @@ router.get("/events/:eventId", isLoggedIn, (req, res) => {
   Event.findById(eventId)
     .populate("organizer")
     .then((foundEvent) => {
-      console.log("req.session", req.session);
-      console.log("foundEvent.organizer", foundEvent.organizer);
       if (
         req.session &&
         foundEvent.organizer &&
@@ -153,7 +151,7 @@ router.post(
     )
       .then((foundEvent) => {
         console.log("this is the found and updated even", foundEvent);
-        res.render("event/event-details", { event: foundEvent });
+        res.redirect(`/events/${foundEvent.id}`);
       })
       .catch((err) => {
         console.log(err);
