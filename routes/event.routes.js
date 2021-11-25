@@ -130,12 +130,13 @@ router.post(
       return;
     }
 
-    // if (!eventHeader) {
-    // res.render("event/create-event", {
-    // errorMessage: "Provide a cover image",
-    // });
-    // return;
-    // }
+    let tempImage;
+    if (!req.file) {
+      tempImage = "/images/defaultcover.png";
+    } else {
+      tempImage = req.file.path;
+    }
+
     Event.findByIdAndUpdate(
       eventId,
       {
@@ -145,7 +146,7 @@ router.post(
         description,
         location,
         organizer: req.session.user._id,
-        eventHeader: req.file.path,
+        eventHeader: tempImage,
       },
       { new: true }
     )
