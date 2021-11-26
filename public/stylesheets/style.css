@@ -273,6 +273,10 @@ div .error-message {
   color: #dc3444;
 }
 
+div .generic-message {
+  color: #212529;
+}
+
 .flex-shrink-0 {
   display: flex;
   align-items: center;

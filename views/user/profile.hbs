@@ -85,16 +85,12 @@
 
 <div class="center-div">
   <div class="profile-view">
-<h1>Hi, {{user.username}}!</h1>
-<p> You are are attending these events:</p>
-{{#each user.attending}}
-{{this.title}}
-{{/each}}
+  <h1>Hi, {{user.username}}!</h1>
 </div>
 
 <div class="center-div">
 
-  <h1>You are attending these event:</h1>
+  <h1>Attending:</h1>
 
   {{#each user.attending}}
     <a href="events/{{this._id}}">
@@ -111,7 +107,7 @@
     </a>
   {{/each}}
 
-   <h1>You have Organized these events:</h1>
+   <h1>Organizing:</h1>
 
   {{#each user.eventCreated}}
   <a href="events/{{this._id}}">
