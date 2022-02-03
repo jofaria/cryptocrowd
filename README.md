@@ -1,32 +1,44 @@
 # Crypto Crowd
 
+Welcome to CryptoCrowd, a platform that gathers cryptocurrency events.
+
+Visit the website 👉 https://cryptocrowd.herokuapp.com
 <br>
 
-## Description
 
-CryptoCrowd - A platform for cryptocurrency events.
+## Introduction
 
-<br>
+This is a pair programming project built in one week after learning backend technologies. The platform was born of our shared interest in cryptocurrencies and the desire to gather a community of cryptocurrency fans.
+
+
+## Tech Stack
+
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
+- Handlebars
+- Bootstrap
+- CSS3
 
 ## User Stories
 
-- **ALL USERS**
-- **404** - As a user I want to see a nice 404 page when I go to a page that doesn’t exist so that I know it was my fault
-- **500** - As a user I want to see a nice error page when the super team screws it up so that I know that is not my fault
-- **homepage** - As a user I want to be able to access a list of crypto-related events, filter them by type and location, log in and sign up.
+### ALL USERS
+- **404** - As a user I want to see a 404 page when I go to a page that doesn’t exist so I know I am not to blame.
+- **500** - As a user I want to see an error page when the amazing dev team made a mistake so that I know I am not to blame.
+- **homepage** - As a user I want to be able to see a list of crypto-related events, search by name, coin, and location without being logged in.
 - **event details** - As a user I want to be able to access a separate page with more details about an event.
-- **sign up** - As a user I want to sign up on the web page so that I can RSVP events.
+- **sign up** - As a user I want to sign up on the web page so that I can interact with events.
 - **login** - As a user I want to be able to log in on the web page so that I can get back to my account.
-- **logout** - As a user I want to be able to log out from the web page so that I can make sure no one will access my account
-- **EVENT ORGANIZER**
+- **profile page** - As a user I want to be able to see the events I am organizing and/or attending.
+- **logout** - As a user I want to be able to log out from the web page.
+
+### EVENT ORGANIZER
 - **create events** - As a user, I want to be able to create/add an event that I am organizing.
-- **edit event** - As a user, I want to be able to edit an event I created.
-- **twitter feed** - As a user, I want to be able to follow news and updates about a specific event
-- **MSP** ( nice to have but not essential )
-- **location** - As a user, I want to see a map with the location of the event.
-- **event creation** - As a user I want to login through google or another certified account. more details of the restaurant, be able to call them and visit their website and save it as favorites.
-- **edit user** - As a user I want to be able to create and edit my profile.
-- **See all attendees**: As a user, I want to be able to see a list of all the people attending an event.
+- **edit event** - As a user, I want to be able to edit an event that I created.
+- **delete event** - As a user, I want to be able to delete an event that I created.
+- **profile page** - As a user I want to be able to see the events I am organizing and/or attending.
+
 
 <br>
 
@@ -43,11 +55,13 @@ CryptoCrowd - A platform for cryptocurrency events.
 | `POST`     | `/details/:eventId` | RSVP and/or save an event.                                   | { attending: true, saved: true }                         |
 | `GET`      | `/:userId-list`     | Private page. Renders a list of RSVPd and saved events       |                                                          |
 | `PUT`      | `/:userId-list`     | Updates the state of saved or RSVPd                          |                                                          |
-| `POST`     | `/create-event`     | Creating and adding a new event to the database.             | { email, password, [firstName], [lastName], [imageUrl] } |
-| `PUT`      | `/edit/:eventId`    | Edit an existing event only if you are the event organizer   |                                                          |
-| `DELETE`   | `/delete/:eventId`  | Delete an existing event (only for the event organizer)      |                                                          |
+| `GET`      | `/create-event`     | Renders the form view to create an event.                    |                                                          |
+| `POST`     | `/create-event`     | Creating and adding a new event to the database.             | { title, coin, location, date, description, [imageUrl] } |
+| `PUT`      | `/edit/:eventId`    | Edit an existing event only if you are the event organizer   | { title, coin, location, date, description, [imageUrl] } |
+| `DELETE`   | `/delete/:eventId`  | Delete an existing event only for the event organizer        |                                                          |
 
 
+<br>
 
 ## Models
 
@@ -85,31 +99,18 @@ Event model
 
 <br>
 
-## Backlog
+## Future Work
 
-[See the Trello board.](https://trello.com/b/Ni3giVKf/ironhackproject)
-
-<br>
-
-## Links
-
-### Git
-
-The url to your repository and to your deployed project
-
-https://github.com/SillasPoulsen/cryptocrowd
-
-[Deploy Link]()
+- Create functionality to edit user profile
+- Display a map with the location of the events
+- Display a list of all event attendees
+- Add a Twitter API to follow tweets for the current event
 
 <br>
 
-### Slides
+## Contributors
 
-The url to your presentation slides
+Joana Faria - [GitHub](https://github.com/jofaria) - [Linkedin](https://www.linkedin.com/in/joanaadaodefaria/)
 
-[Slides Link](https://docs.google.com/presentation/d/1P5FIi0vHZBUcgUtmt1M4_lLCO5dwdJ4UOgtJa4ehGfk/edit?usp=sharing)
+Sillas Poulsen - [GitHub](https://github.com/SillasPoulsen) - [Linkedin](https://www.linkedin.com/in/sillaspoulsen/)
 
-### Contributors
-
-Sillas Poulsen - [GitHubUsername](https://github.com/username) - [LinkedinLink](https://www.linkedin.com/in/username)
-Joana Faria - [GitHubUsername](https://github.com/username) - [LinkedinLink]
